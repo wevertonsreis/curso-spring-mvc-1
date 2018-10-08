@@ -24,6 +24,8 @@ public class Produto {
 	@ElementCollection
 	private List<Preco> precos;
 	
+	private String sumarioPath;
+	
 	public int getId() {
 		return id;
 	}
@@ -70,6 +72,14 @@ public class Produto {
 
 	public void setPrecos(List<Preco> precos) {
 		this.precos = precos;
+	}
+
+	public String getSumarioPath() {
+		return sumarioPath;
+	}
+
+	public void setSumarioPath(String sumarioPath) {
+		this.sumarioPath = sumarioPath;
 	}
 
 	@Override
