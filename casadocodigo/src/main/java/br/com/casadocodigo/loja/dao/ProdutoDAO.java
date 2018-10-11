@@ -24,5 +24,9 @@ public class ProdutoDAO {
 	public List<Produto> listar() {
 		return manager.createQuery("select p from Produto p", Produto.class).getResultList();
 	}
+
+	public Produto findById(Integer id) {
+		return manager.find(Produto.class, id);
+	}
 	
 }
