@@ -5,13 +5,17 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 import br.com.casadocodigo.loja.model.CarrinhoItem;
+import br.com.casadocodigo.loja.model.Produto;
+import br.com.casadocodigo.loja.model.TipoPreco;
 
 @Component
-@Scope(value = WebApplicationContext.SCOPE_SESSION)
+@Scope(value = WebApplicationContext.SCOPE_SESSION,
+		proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class CarrinhoCompras {
 
 	private Map<CarrinhoItem, Integer> itens = new LinkedHashMap<>();
@@ -42,6 +46,12 @@ public class CarrinhoCompras {
 			total = total.add(getTotal(item));
 		}
 		return total;
+	}
+
+	public void remover(Integer produtoId, TipoPreco tipoPreco) {
+		Produto produto = new Produto();
+		produto.setId(produtoId);
+		itens.remove(new CarrinhoItem(produto, tipoPreco));
 	}
 	
 }

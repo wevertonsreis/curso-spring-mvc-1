@@ -46,6 +46,12 @@ public class CarrinhoComprasController implements Serializable {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value = "/remover", method = RequestMethod.POST)
+	public ModelAndView remover(Integer produtoId, TipoPreco tipoPreco) {
+		carrinhoCompras.remover(produtoId, tipoPreco);
+		return new ModelAndView("redirect:/carrinho");
+	}
+	
 	private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipoPreco) {
 		Produto produto = produtoDAO.findById(produtoId);
 		CarrinhoItem carrinhoItem = new CarrinhoItem(produto, tipoPreco);
